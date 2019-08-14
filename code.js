@@ -82,9 +82,6 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log("Arrival time: " + nextTrain);
 
 
-    var empTimePretty = moment.unix(nextTrain).format("hh:mm A");
-    console.log("HEY: " + empTimePretty);
-
     var newRow = $("<tr>").append(
         $("<td>").text(tName),
         $("<td>").text(tDestination),
