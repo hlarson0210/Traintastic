@@ -59,23 +59,27 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log(tTime);
     console.log(tFrequency);
 
-    // need to create the time calculation for this
 
     var firstTime = tTime;
     console.log(firstTime);
+
     var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
     console.log(firstTimeConverted);
-    var currentTime = moment();
+
+    var currentTime = moment().format("HH:mm A");
     console.log("Current time: " + currentTime);
+
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     console.log("Difference in time: " + diffTime);
+    
     var tRemainder = diffTime % tFrequency;
     console.log("REMAINDER: " + tRemainder);
+
     var tMinutesTillTrain = tFrequency - tRemainder;
     console.log("Minutes til Train: " + tMinutesTillTrain);
 
-    var nextTrain = moment().add(tMinutesTillTrain, "hh:mm");
-    console.log("Arrival time: " + moment(nextTrain).format("hh:mm"));
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
+    console.log("Arrival time: " + nextTrain);
 
 
     var empTimePretty = moment.unix(nextTrain).format("hh:mm A");
